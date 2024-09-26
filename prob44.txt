@@ -1,0 +1,21 @@
+string removePunctuations(string str)
+{
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (ispunct(str[i]))
+            str.erase(i, 1);
+    }
+    return str;
+}
+
+int main()
+{    
+    string str = "Welcome to Jordan , Jordan is a nice country; it's amazing.";
+    cout << "Orginal string is:\n";
+    cout << str << endl;
+    cout << "\nPunctuation Removed:\n";
+    cout  << removePunctuations(str);
+    
+
+    return 0;
+}

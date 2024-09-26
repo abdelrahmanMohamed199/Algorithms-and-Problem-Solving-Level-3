@@ -1,0 +1,51 @@
+void fillMatrixWithRandomNums(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = tes::randomNum(1, 10);   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf(" %0*d\t", 2, matrix[i][j]);
+        }
+        cout << endl;
+    }
+}
+
+int sumOfMatrixElements(int matrix[3][3])
+{
+    int sum = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            sum += matrix[i][j];
+        }
+    }
+    return sum;
+}
+
+int main()
+{ 
+    srand((unsigned)time(NULL));
+
+    int matrix[3][3];
+    
+    fillMatrixWithRandomNums(matrix);   
+    cout << "Matrix1:\n";
+    printMatrix(matrix);
+    cout << "\nSum of matrix1 is: " << sumOfMatrixElements(matrix);
+  
+    return 0;
+}

@@ -1,0 +1,56 @@
+vector<stBankClients> loadClientsDataFromFile(string fileName)
+{
+    vector<stBankClients> vClients;
+    fstream file;
+    string line;
+    stBankClients client;
+    file.open(clientsFileName, ios::in);
+    if (file.is_open())
+    {
+        while (getline(file, line))
+        {
+            client = convertLineToRecord(line, "#//#");
+            vClients.push_back(client);
+        }
+        file.close();
+    }
+    return vClients;
+}
+
+void printClientCard(stBankClients client)
+{
+    cout << "\nThe following are the clients details:\n";
+    cout << "\nAccount number: " << client.accountNum;
+    cout << "\nPin Code: " << client.pinCode;
+    cout << "\nName: " << client.name;
+    cout << "\nPhone: " << client.phone;
+    cout << "\nBalance: " << client.accountBalance;
+    cout << endl;
+}
+
+void findClientByAccNum(string accountNumber)
+{
+    vector<stBankClients> vClients = loadClientsDataFromFile(clientsFileName);
+    short index = -1;
+    for (short i = 0; i < vClients.size(); ++i)
+    {
+        if (vClients.at(i).accountNum == accountNumber)
+        {
+            index = i;
+            break;
+        }
+    }
+    if (index >= 0)
+        printClientCard(vClients.at(index));
+    else
+        cout << "\nClient of account number " << accountNumber << " not found!\n";
+}
+
+int main()
+{    
+    
+    string accNum = tes::readString("Please enter account number?");
+    findClientByAccNum(accNum);
+    
+    return 0;
+}

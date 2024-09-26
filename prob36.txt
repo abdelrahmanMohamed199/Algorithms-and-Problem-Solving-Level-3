@@ -1,0 +1,27 @@
+short countStringWords(string str)
+{
+    string indicator = " ";
+    string word = "";
+    short pos = 0;
+    short counter = 0;
+    while ((pos = str.find(indicator)) != string::npos)
+    {
+        word = str.substr(0, pos);
+        if (word != "")
+        {
+            counter++;
+        }
+        str.erase(0, pos + indicator.length());
+    }
+    if (str != "")
+        counter++;
+    return counter;
+}
+
+int main()
+{ 
+    string str = tes::readString("Enter a string");
+    cout << "\nThe number of words in your string is: " << countStringWords(str) << endl;
+    
+    return 0;
+}

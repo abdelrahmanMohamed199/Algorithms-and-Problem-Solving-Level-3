@@ -1,0 +1,52 @@
+void fillMatrixWithRandomNums(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = tes::randomNum(1, 10);   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf(" %0*d\t", 1, matrix[i][j]);
+        }
+        cout << endl;
+    }
+}
+
+int countNumInMatrix(int matrix[3][3], int num)
+{
+    short c = 0;   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (matrix[i][j] == num)
+                c++;
+        }
+    }
+    return c;
+}
+
+int main()
+{ 
+    srand((unsigned)time(NULL));
+
+    int matrix1[3][3];
+    fillMatrixWithRandomNums(matrix1);
+    cout << "Matrix1:\n";
+    printMatrix(matrix1);
+    int num = tes::readNum("\nEnter the number to count in matrix:");
+    printf("\nNumber %d count in matrix is %d\n", num, countNumInMatrix(matrix1, num));
+  
+    return 0;
+}

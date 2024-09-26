@@ -1,0 +1,18 @@
+void printFibonacciUsingRecursion(int num)
+{
+    static int prev1 = 1, prev2 = 0, current = 1;
+    cout << current << "  ";
+    current = prev1 + prev2;
+    prev2 = prev1;
+    prev1 = current;
+    if(num > 1)
+        printFibonacciUsingRecursion(num - 1);
+}
+
+int main()
+{ 
+    cout << endl;
+    printFibonacciUsingRecursion(10);
+    cout << endl;
+    return 0;
+}

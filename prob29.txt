@@ -1,0 +1,66 @@
+int countSmallLetters(string str)
+{
+    int counter = 0;
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (islower(str[i]))
+            counter++;
+    }
+    return counter;
+}
+
+int countCapitalLetters(string str)
+{
+    int counter = 0;
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (isupper(str[i]))
+            counter++;
+    }
+    return counter;
+}
+
+int main()
+{ 
+    string str = tes::readString("Enter a string");
+    cout << "\nString Length = " << str.length() << endl;
+    cout << "Capital letters count = " << countCapitalLetters(str) << endl;
+    cout << "Small letters count = " << countSmallLetters(str) << endl;
+    
+    return 0;
+}
+
+###################################################################################
+another solution:
+
+enum enWhatToCount {smallLetters, capitalLetters, punctuation, digits, all};
+
+short countcharacters(string str, enWhatToCount type = enWhatToCount::all)
+{
+    short counter = 0;
+    if (type == enWhatToCount::all)
+        return str.length();
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (type == enWhatToCount::smallLetters && islower(str[i]))
+            counter++;
+        if (type == enWhatToCount::capitalLetters && isupper(str[i]))
+            counter++;
+        if (type == enWhatToCount::punctuation && ispunct(str[i]))
+            counter++;
+        if(type == enWhatToCount::digits && isdigit(str[i]))
+            counter++;
+    }
+    return counter;
+}
+
+int main()
+{ 
+    string str = tes::readString("Enter a string");
+    cout << "\nString Length = " << countcharacters(str) << endl;
+    cout << "Capital letters count = " << countcharacters(str, enWhatToCount::capitalLetters) << endl;
+    cout << "Small letters count = " << countcharacters(str, enWhatToCount::smallLetters) << endl;
+    cout << "Punctuation count = " << countcharacters(str, enWhatToCount::punctuation) << endl;
+    cout << "Digits count = " << countcharacters(str, enWhatToCount::digits) << endl;
+    return 0;
+}

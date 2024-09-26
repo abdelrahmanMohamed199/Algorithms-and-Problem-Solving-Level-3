@@ -1,0 +1,56 @@
+void printFirstLetters(string str)
+{
+    string a = "";
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (str[i] != ' ')
+        {
+            a += str[i];
+        }
+        else
+        {
+            if (a.length() > 0)
+            {
+                cout << a[0] << endl;
+                a = "";
+            }
+        }
+    }
+    cout << a[0] << endl;
+}
+
+int main()
+{ 
+    string str;
+    cout << "\nEnter your string:\n";
+    getline(cin, str);
+    cout << "\nFirst letters of this string:\n";
+    printFirstLetters(str);
+    return 0;
+}
+
+**********************************************************************
+another solution:
+
+void printFirstLetters(string str)
+{
+    bool isFirstLetter = true;
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (str[i] != ' ' && isFirstLetter)
+        {
+            cout << str[i] << endl;
+        }
+        isFirstLetter = (str[i] == ' ');
+    }
+}
+
+int main()
+{ 
+    string str;
+    cout << "\nEnter your string:\n";
+    getline(cin, str);
+    cout << "\nFirst letters of this string:\n";
+    printFirstLetters(str);
+    return 0;
+}

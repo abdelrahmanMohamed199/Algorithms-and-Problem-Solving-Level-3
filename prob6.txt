@@ -1,0 +1,37 @@
+void fillMatrix(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = c;   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{
+    cout << "The following is a 3x3 matrix with orderd numbers:\n";
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << setw(3) << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+}
+
+
+
+int main()
+{ 
+
+    int matrix[3][3];
+    fillMatrix(matrix);
+    printMatrix(matrix);
+    
+    return 0;
+}

@@ -1,0 +1,29 @@
+char readChar()
+{
+    char c;
+    cout << "\nEnter a character\n";
+    cin >> c;
+    return c;
+}
+
+bool isVowel(char c)
+{
+    char vowels[] = { 'a', 'e', 'i', 'o', 'u' };
+    for (int i = 0; i < size(vowels); i++)
+    {
+        if (tolower(c) == vowels[i])
+            return true;
+    }
+    return false;
+}
+
+int main()
+{ 
+    
+    char c = readChar();
+    if (isVowel(c))
+        cout << "\nYes, letter " << c << " is vowel\n";
+    else
+        cout << "\nNo, letter " << c << " is not vowel\n";
+    return 0;
+}

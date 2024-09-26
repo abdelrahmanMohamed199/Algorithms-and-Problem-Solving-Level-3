@@ -1,0 +1,90 @@
+void printClientCard(stBankClients client)
+{
+    cout << "\nThe following are the clients details:\n";
+    cout << "\nAccount number: " << client.accountNum;
+    cout << "\nPin Code: " << client.pinCode;
+    cout << "\nName: " << client.name;
+    cout << "\nPhone: " << client.phone;
+    cout << "\nBalance: " << client.accountBalance;
+    cout << endl;
+}
+
+bool isClientExist(string accNum, vector<stBankClients> &vClients, stBankClients &client)
+{
+    
+    for (stBankClients& c : vClients)
+    {
+        if (c.accountNum == accNum)
+        {
+            client = c;
+            return true;
+        }
+    }
+    return false;
+}
+
+void saveClientsInFile(string fileName, vector<stBankClients> vClients)
+{
+    fstream file;
+    file.open(fileName, ios::out);
+    string dataLine = "";
+    if (file.is_open())
+    {
+        for (stBankClients& c : vClients)
+        {
+            dataLine = convertRecordToLine(c);
+            file << dataLine << endl;
+        }
+    }   
+}
+
+stBankClients changeClientRecord(string accNum)
+{
+    stBankClients client;
+    client.accountNum = accNum;
+    cout << "\nEnter Pin Code? ";
+    getline(cin >> ws, client.pinCode);
+    cout << "\nEnter Name? ";
+    getline(cin, client.name);
+    cout << "\nEnter Phone? ";
+    getline(cin, client.phone);
+    cout << "\nEnter Balance? ";
+    cin >> client.accountBalance;
+    return client;
+}
+
+void updateClientData(string accNum, vector<stBankClients> &vClients)
+{
+    stBankClients client;
+    char ans = 'n';
+    if (isClientExist(accNum, vClients, client))
+    {
+        printClientCard(client);
+        cout << "\nAre you sure do you want to update this client? y/n? ";
+        cin >> ans;
+        if (tolower(ans) == 'y')
+        {
+            for (stBankClients& c : vClients)
+            {
+                if (c.accountNum == accNum)
+                {
+                    c = changeClientRecord(accNum);
+                    break;
+                }
+            }
+            saveClientsInFile(clientsFileName, vClients);
+            cout << "\nClient updated successfully.\n";
+        }
+    }
+    else
+        cout << "\nClient of account number " << accNum << " not found.\n";
+}
+
+int main()
+{    
+    vector<stBankClients> vClients = loadClientsDataFromFile(clientsFileName);
+    string accNum = tes::readString("Please enter account number?");
+    updateClientData(accNum, vClients);
+    
+    return 0;
+}

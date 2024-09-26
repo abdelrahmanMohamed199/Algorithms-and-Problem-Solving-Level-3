@@ -1,0 +1,39 @@
+string reverseStringWords(string str)
+{
+    string reversedStr = "";
+    string word = "";
+    short num = 0;
+    for (int i = str.length() - 1; i >= 0; i--)
+    {
+        if (str[i] == ' ')
+        {
+            word = str.substr(i + 1, num);
+            reversedStr += word;
+            reversedStr += str[i];
+            num = 0;
+            word = "";
+        }
+        else
+        {
+            num++;
+        }
+    }
+    reversedStr += str.substr(0, num);
+    return reversedStr;
+}
+
+##########################################################
+
+string reverseWordsInString(string str)
+{
+    string revStr = "";
+    vector<string> vString = tes::splitString(str, " ");
+    vector<string>::iterator it = vString.end();
+    while (it != vString.begin())
+    {
+        --it;
+        revStr += *it + " ";
+    }
+    revStr = revStr.substr(0, revStr.length() - 1); // remove last space
+    return revStr;
+}

@@ -1,0 +1,70 @@
+stBankClient convertLineToRecord(string line, string delim)
+{
+    stBankClient client;
+    vector<string> vString = tes::splitString(line, delim);
+    client.accountNum = vString.at(0);
+    client.pinCode = vString.at(1);
+    client.name = vString.at(2);
+    client.phone = vString.at(3);
+    client.accountBalance = stod(vString.at(4));
+    return client;
+}
+
+vector<stBankClient> loadClientsDataFromFile(string fileName)
+{
+    vector<stBankClient> vClients;
+    fstream file;
+    string line;
+    stBankClient client;
+    file.open(clientsFileName, ios::in);
+    if (file.is_open())
+    {
+        while (getline(file, line))
+        {
+            client = convertLineToRecord(line, "#//#");
+            vClients.push_back(client);
+        }
+        file.close();
+    }
+    return vClients;
+}
+
+void printClientRecord(stBankClient client)
+{
+    cout << "| " << left << setw(15) << client.accountNum;
+    cout << "| " << left << setw(10) << client.pinCode;
+    cout << "| " << left << setw(30) << client.name;
+    cout << "| " << left << setw(15) << client.phone;
+    cout << "| " << left << setw(10) << client.accountBalance;
+    cout << endl;
+}
+
+void tableHeader(short numOfClients)
+{
+    printf("\n\t\t\t\tClient list of (%d) client(s).", numOfClients);
+    cout << "\n--------------------------------------------------------------------------------------------\n";
+    cout << "| " << setw(15) << left << "Account Number";
+    cout << "| " << setw(10) << left << "PIN Code";
+    cout << "| " << setw(30) << left << "Client Name";
+    cout << "| " << setw(15) << left << "Phone";
+    cout << "| " << setw(10) << left << "Balance";
+    cout << "\n--------------------------------------------------------------------------------------------\n";
+}
+
+void printAllClientsData(vector<stBankClient> vClients)
+{
+    tableHeader(vClients.size());
+    for (stBankClient &client : vClients)
+    {
+        printClientRecord(client);
+    }
+    cout << "\n--------------------------------------------------------------------------------------------\n";
+}
+
+int main()
+{    
+    vector<stBankClient> vClients = loadClientsDataFromFile(clientsFileName); //clientsFileName is a Global variable
+    printAllClientsData(vClients);
+    
+    return 0;
+}

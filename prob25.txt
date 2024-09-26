@@ -1,0 +1,28 @@
+string readString(string msg)
+{
+    string str;
+    cout << msg << endl;
+    getline(cin, str);
+    return str;
+}
+
+string lowerFirstLetters(string str)
+{
+    bool isFirstLetter = true;
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (isFirstLetter && str[i] != ' ')
+        {
+            str[i] = tolower(str[i]);
+        }
+        isFirstLetter = (str[i] == ' ');
+    }
+    return str;
+}
+
+int main()
+{ 
+    cout << "\nString after conversion:\n" << lowerFirstLetters(readString("Enter your string:"));
+    
+    return 0;
+}

@@ -1,0 +1,49 @@
+void fillMatrix(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = c;   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << setw(3) << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+}
+
+void transposeMatrix(int matrix[3][3], int newMatrix[3][3])
+{
+    for (int col = 0; col < 3; col++)
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            newMatrix[row][col] = matrix[col][row];
+        }
+    }
+}
+
+int main()
+{ 
+
+    int matrix[3][3];
+    int transposedArray[3][3];
+    fillMatrix(matrix);
+    cout << "The following is a 3x3 matrix with orderd numbers:\n";
+    printMatrix(matrix);
+    transposeMatrix(matrix, transposedArray);
+    cout << "\nThe following is the transposed matrix:\n";
+    printMatrix(transposedArray);
+    return 0;
+}

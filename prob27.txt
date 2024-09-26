@@ -1,0 +1,24 @@
+char readCharacter(string msg)
+{
+    char c;
+    cout << msg << endl;
+    cin >> c;
+    return c;
+}
+
+char invertCharCase(char c)
+{
+    if (c == toupper(c))
+        return tolower(c);
+    else
+        return toupper(c);
+}
+
+int main()
+{ 
+    
+    cout << "\nCharacter after inverting case: " 
+         << invertCharCase(readCharacter("Enter a character")) << endl;
+    
+    return 0;
+}

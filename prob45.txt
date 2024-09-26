@@ -1,0 +1,39 @@
+struct stBankClient
+{
+    string accountNum, pinCode, name, phone;
+    double accountBalance;
+};
+
+stBankClient readData()
+{
+    stBankClient client;
+    cout << "Enter account number? ";
+    getline(cin, client.accountNum);
+    cout << "\nEnter PinCode? ";
+    getline(cin, client.pinCode);
+    cout << "\nEnter name? ";
+    getline(cin, client.name);
+    cout << "\nEnter phone? ";
+    getline(cin, client.phone);
+    cout << "\nEnter account balance? ";
+    cin >> client.accountBalance;
+    return client;
+}
+
+string convertRecordToLine(stBankClient client, string delim = "#//#")
+{
+    string line = "";
+    
+    line += client.accountNum + delim + client.pinCode + delim + client.name + delim;
+    line += client.phone + delim + to_string(client.accountBalance);
+    return line;
+}
+
+int main()
+{    
+    cout << "Please enter client data:\n\n";
+    stBankClient client = readData();
+    cout << "\n\nClient record for saving is:\n";
+    cout << convertRecordToLine(client) << endl;
+    return 0;
+}

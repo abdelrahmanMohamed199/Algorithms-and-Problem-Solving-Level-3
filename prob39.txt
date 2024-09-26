@@ -1,0 +1,21 @@
+string joinString(vector<string> vWords, string delim)
+{
+    string str = "";
+    vector<string>::iterator it = vWords.begin();
+    for (it; it != vWords.end(); ++it)
+    {
+        if (it == vWords.end() - 1)
+            str += *it;
+        else
+            str += *it + delim;
+    }
+    return str;
+}
+
+int main()
+{ 
+    vector<string> str = { "Ali", "Ahmed", "Hassan", "Sayed" };
+    cout << "Vector after join:\n";
+    cout << joinString(str, "////");
+    return 0;
+}

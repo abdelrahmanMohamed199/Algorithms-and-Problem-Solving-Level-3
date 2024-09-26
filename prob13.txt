@@ -1,0 +1,63 @@
+void fillMatrixWithRandomNums(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = tes::randomNum(0, 1);   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf(" %0*d\t", 1, matrix[i][j]);
+        }
+        cout << endl;
+    }
+}
+
+bool isMatrixIdentity(int matrix[3][3])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (i == j)
+            {
+                if (matrix[i][j] != 1)
+                    return false;
+            }
+            else
+            {
+                if (matrix[i][j] != 0)
+                    return false;
+            }
+        }
+    }
+    return true;
+}
+
+int main()
+{ 
+    srand((unsigned)time(NULL));
+
+    int matrix[3][3];
+    
+    fillMatrixWithRandomNums(matrix);   
+    cout << "Matrix1:\n";
+    printMatrix(matrix);
+    
+    if (isMatrixIdentity(matrix))
+        cout << "\nYes, matrix is identity\n";
+    else
+        cout << "\nNo, matrix is not identity\n";
+  
+    return 0;
+}

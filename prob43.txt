@@ -1,0 +1,44 @@
+string customReplace(string str, string oldWord, string newWord, enCaseSensitive type = enCaseSensitive::matchCase)
+{
+    short pos = 0;
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (type == enCaseSensitive::matchCase)
+        {
+            pos = str.find(oldWord);
+            while (pos != string::npos)
+            {
+                str.erase(pos, oldWord.length());
+                str.insert(pos, newWord);
+                pos = str.find(oldWord);
+            }
+            return str;
+        }
+        else
+        {
+            oldWord = tes::lowerCaseAllLetters(oldWord);
+            str = tes::lowerCaseAllLetters(str);
+            pos = str.find(oldWord);
+            while (pos != string::npos)
+            {
+                str.erase(pos, oldWord.length());
+                str.insert(pos, newWord);
+                pos = str.find(oldWord);
+            }
+            return str;
+        }
+    }
+}
+
+int main()
+{    
+    string str = "Welcome to Jordan, Jordan is a nice country.";
+    cout << "Orginal string is:\n";
+    cout << str << endl;
+    cout << "\nReplace with match case:\n";
+    cout  << customReplace(str, "jordan", "Egypt");
+    cout << "\n\nReplace with do not match case:\n";
+    cout << customReplace(str, "JORDan", "Egypt", enCaseSensitive::doNotMatchCase) << endl;
+
+    return 0;
+}

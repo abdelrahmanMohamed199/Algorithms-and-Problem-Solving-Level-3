@@ -1,0 +1,57 @@
+void fillMatrixWithRandomNums(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = tes::randomNum(1, 10);   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf(" %0*d\t", 2, matrix[i][j]);
+        }
+        cout << endl;
+    }
+}
+
+bool areMatricesTypical(int matrix1[3][3], int matrix2[3][3])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (matrix1[i][j] != matrix2[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+int main()
+{ 
+    srand((unsigned)time(NULL));
+
+    int matrix1[3][3], matrix2[3][3];
+    
+    fillMatrixWithRandomNums(matrix1);   
+    cout << "Matrix1:\n";
+    printMatrix(matrix1);
+    fillMatrixWithRandomNums(matrix2);
+    cout << "\nMatrix2:\n";
+    printMatrix(matrix2);
+    if (areMatricesTypical(matrix1, matrix2))
+        cout << "\nYes, matrices are typical\n";
+    else
+        cout << "\nNo, matrices are not typical\n";
+  
+    return 0;
+}

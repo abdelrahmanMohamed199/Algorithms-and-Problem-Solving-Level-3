@@ -1,0 +1,69 @@
+void printClientCard(stBankClients client)
+{
+    cout << "\nThe following are the clients details:\n";
+    cout << "\nAccount number: " << client.accountNum;
+    cout << "\nPin Code: " << client.pinCode;
+    cout << "\nName: " << client.name;
+    cout << "\nPhone: " << client.phone;
+    cout << "\nBalance: " << client.accountBalance;
+    cout << endl;
+}
+
+void deleteClient(string accNum)
+{
+    vector<string> vLines;
+    tes::loadFileContentToVector(clientsFileName, vLines);
+    for (string& s : vLines)
+    {
+        if (accNum == s.substr(0, accNum.length()))
+        {
+            s = "";
+            break;
+        }
+    }
+    tes::saveVectorToFile(clientsFileName, vLines);
+}
+
+bool isClientExist(string accNum, stBankClients &client)
+{
+    vector<stBankClients> vClients = loadClientsDataFromFile(clientsFileName);
+    for (stBankClients& c : vClients)
+    {
+        if (c.accountNum == accNum)
+        {
+            client = c;
+            return true;
+        }
+    }
+    return false;
+}
+
+void deletionSteps(string accNum, stBankClients &client)
+{
+    char ans = 'n';
+    if (isClientExist(accNum, client))
+    {
+        printClientCard(client);
+        cout << "\nAre you sure you want delete this client? y/n? ";
+        cin >> ans;
+        if (tolower(ans) == 'y')
+        {
+            deleteClient(accNum);
+            cout << "\nClient deleted successfully\n";
+        }
+    }
+    else
+    {
+        cout << "\nClient of account number " << accNum << " not found!\n";
+    }
+}
+
+int main()
+{    
+    
+    string accNum = tes::readString("Please enter account number?");
+    stBankClients client;
+    deletionSteps(accNum, client);
+    
+    return 0;
+}

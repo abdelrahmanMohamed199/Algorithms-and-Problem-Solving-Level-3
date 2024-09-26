@@ -1,0 +1,36 @@
+short countLetter(string str, char letter, bool matchCase = true)
+{
+    short counter = 0; 
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (matchCase)
+        {
+            if (str[i] == letter)
+                counter++;
+        }
+        else
+        {
+            if (toupper(str[i]) == toupper(letter))
+                counter++;
+        }
+    }
+    return counter;
+}
+
+char readChar()
+{
+    char c;
+    cout << "\nEnter a character\n";
+    cin >> c;
+    return c;
+}
+
+int main()
+{ 
+    string str = tes::readString("Enter a string");
+    char c = readChar();
+    cout << "\nLetter '" << c << "' count = " << countLetter(str, c) << endl;
+    cout << "\nLetter '" << char(tolower(c)) << "' or letter '"
+         << char(toupper(c)) << "' count = " << countLetter(str, c, false) << endl;
+    return 0;
+}

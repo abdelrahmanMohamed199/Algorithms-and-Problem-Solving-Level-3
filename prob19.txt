@@ -1,0 +1,67 @@
+void fillMatrixWithRandomNums(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = tes::randomNum(1, 100);   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf(" %0*d\t", 1, matrix[i][j]);
+        }
+        cout << endl;
+    }
+}
+
+int minNumInMatrix(int matrix[3][3])
+{
+    int min = matrix[0][0];
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (matrix[i][j] < min)
+                min = matrix[i][j];
+        }
+    }
+    return min;
+}
+
+int maxNumInMatrix(int matrix[3][3])
+{
+    int max = matrix[0][0];
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (matrix[i][j] > max)
+                max = matrix[i][j];
+        }
+    }
+    return max;
+}
+
+int main()
+{ 
+    srand((unsigned)time(NULL));
+
+    int matrix1[3][3];
+    fillMatrixWithRandomNums(matrix1);
+    cout << "Matrix1:\n";
+    printMatrix(matrix1);
+
+    cout << "\nMinimum number in matrix1 is: " << minNumInMatrix(matrix1) << endl;
+    cout << "\nMaximum number in matrix1 is: " << maxNumInMatrix(matrix1) << endl;
+  
+    return 0;
+}

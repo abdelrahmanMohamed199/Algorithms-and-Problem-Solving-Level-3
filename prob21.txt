@@ -1,0 +1,20 @@
+void printFibonacciSeries(int num)
+{
+    int prev1 = 1, prev2 = 1, current = 0;
+    cout << endl << prev1 << "  " << prev2 << "  ";
+    for (int i = 2; i < num; i++)
+    {
+        current = prev1 + prev2;
+        cout << current << "  ";
+        prev2 = prev1;
+        prev1 = current;
+    }
+    cout << endl;
+}
+
+int main()
+{ 
+    printFibonacciSeries(10);
+    
+    return 0;
+}

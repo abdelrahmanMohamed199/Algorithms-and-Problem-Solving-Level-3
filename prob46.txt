@@ -1,0 +1,26 @@
+stBankClient convertLineToRecord(string line, string delim)
+{
+    stBankClient client;
+    vector<string> vString = tes::splitString(line, delim);
+    client.accountNum = vString.at(0);
+    client.pinCode = vString.at(1);
+    client.name = vString.at(2);
+    client.phone = vString.at(3);
+    client.accountBalance = stod(vString.at(4));
+    return client;
+}
+
+int main()
+{    
+    string line = "A150#//#8329#//#Ali Omar#//#0102288353#//#100000";
+    cout << "Line record is:\n";
+    cout << line << endl;
+    stBankClient client = convertLineToRecord(line, "#//#");
+    cout << "\n\nThe following is the extracted client record:\n\n";
+    cout << "Account number: " << client.accountNum << endl;
+    cout << "Pin Code: " << client.pinCode << endl;
+    cout << "Name: " << client.name << endl;
+    cout << "Phone number: " << client.phone << endl;
+    cout << "Account balance: " << client.accountBalance << endl;
+    return 0;
+}

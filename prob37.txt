@@ -1,0 +1,31 @@
+vector<string> splitString(string str, string delim)
+{
+    vector<string> vTokens;
+    short pos = 0;
+    string word = "";
+    while ((pos = str.find(delim)) != string::npos)
+    {
+        word = str.substr(0, pos);
+        if (word != "")
+            vTokens.push_back(word);
+        str.erase(0, pos + delim.length());
+    }
+    if (str != "")
+        vTokens.push_back(str);
+    return vTokens;
+}
+
+void printTokens(vector<string> vTokens)
+{
+    cout << "\nTokens = " << vTokens.size() << endl;
+    for (string& w : vTokens)
+        cout << w << endl;
+}
+
+int main()
+{ 
+    string str = tes::readString("Enter a string");
+    printTokens(splitString(str, " "));
+    
+    return 0;
+}

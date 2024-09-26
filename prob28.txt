@@ -1,0 +1,17 @@
+string invertAllCharInString(string str)
+{
+    for (int i = 0; i < str.length(); i++)
+    {
+        str[i] = tes::invertCharCase(str[i]);
+    }
+    return str;
+}
+
+int main()
+{ 
+    string str = tes::readString("Enter a string");
+    cout << "\nString after inverting all letters case:\n";
+    cout << invertAllCharInString(str) << endl;
+    
+    return 0;
+}

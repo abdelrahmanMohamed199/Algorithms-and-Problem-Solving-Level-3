@@ -1,0 +1,33 @@
+string readString(string msg)
+{
+    string str;
+    cout << msg << endl;
+    getline(cin, str);
+    return str;
+}
+
+string upperCaseAllLetters(string str)
+{
+    for (int i = 0; i < str.length(); i++)
+    {
+        str[i] = toupper(str[i]);
+    }
+    return str;
+}
+
+string lowerCaseAllLetters(string str)
+{
+    for (int i = 0; i < str.length(); i++)
+    {
+        str[i] = tolower(str[i]);
+    }
+    return str;
+}
+
+int main()
+{ 
+    string str = readString("Enter your string");
+    cout << "\nString after upper:\n" << upperCaseAllLetters(str);
+    cout << "\n\nString after lower:\n" << lowerCaseAllLetters(str);
+    return 0;
+}

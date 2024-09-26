@@ -1,0 +1,54 @@
+void fillMatrixWithRandomNums(int matrix[3][3])
+{
+    short c = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            c++;
+            matrix[i][j] = tes::randomNum(1, 100);   
+        }
+    }
+}
+
+void printMatrix(int matrix[3][3])
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf(" %0*d\t", 1, matrix[i][j]);
+        }
+        cout << endl;
+    }
+}
+
+bool isNumInMatrix(int matrix[3][3], int num)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (matrix[i][j] == num)
+                return true;
+        }
+    }
+    return false;
+}
+
+int main()
+{ 
+    srand((unsigned)time(NULL));
+
+    int matrix1[3][3];
+    fillMatrixWithRandomNums(matrix1);
+    cout << "Matrix1:\n";
+    printMatrix(matrix1);
+    int num = tes::readNum("\nEnter a number for search in matrix?");
+    if (isNumInMatrix(matrix1, num))
+        cout << "\nYes, it is there\n";
+    else
+        cout << "\nNo, it is not there\n";
+  
+    return 0;
+}

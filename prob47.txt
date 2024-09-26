@@ -1,0 +1,69 @@
+const string clientsFileName = "bankClients.txt";
+
+struct stBankClient
+{
+    string accountNum, pinCode, name, phone;
+    double accountBalance;
+};
+
+stBankClient readData()
+{
+    stBankClient client;
+    cout << "Enter account number? ";
+    getline(cin >> ws, client.accountNum);
+    cout << "\nEnter PinCode? ";
+    getline(cin, client.pinCode);
+    cout << "\nEnter name? ";
+    getline(cin, client.name);
+    cout << "\nEnter phone? ";
+    getline(cin, client.phone);
+    cout << "\nEnter account balance? ";
+    cin >> client.accountBalance;
+    return client;
+}
+
+string convertRecordToLine(stBankClient client, string delim = "#//#")
+{
+    string line = "";
+    
+    line += client.accountNum + delim + client.pinCode + delim + client.name + delim;
+    line += client.phone + delim + to_string(client.accountBalance);
+    return line;
+}
+
+void addDataLineToFile(string fileName, string dataLine)
+{
+    fstream file;
+    file.open(fileName, ios::out | ios::app);
+    if (file.is_open())
+    {
+        file << dataLine << endl;
+        file.close();
+    }
+}
+
+void addNewClient()
+{
+    stBankClient client;
+    client = readData();
+    addDataLineToFile(clientsFileName, convertRecordToLine(client));
+}
+
+void addClientsToFile()
+{    
+    char addMore = 'y';
+    do
+    {
+        system("cls");
+        cout << "\nAdding New Client:\n\n";
+        addNewClient();       
+        cout << "\nClient added successfully, Do you want to add more clients? ";
+        cin >> addMore;
+    } while (addMore == 'y' || addMore == 'Y');
+}
+
+int main()
+{    
+    addClientsToFile();
+    return 0;
+}
